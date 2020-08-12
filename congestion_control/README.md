@@ -26,7 +26,7 @@ Each packet bundle is separated by a space char `' '`.
 Each time slot is separated by a new line `\n`.
 **Input_file example:**
 >(2,3,6) (3,4,1)
-(2,4,5)
+>(2,4,5)
 
 ## How to run the program
 
@@ -40,12 +40,12 @@ Make sure you have  NodeJS and NPM installed, you can grab them from [here](http
 ## Expected Output
 **BD**
 > Arrived packets: 8
- Dropped packets: 4
- Transmitted packets: 4
- Total transmitted values: 22
+> Dropped packets: 4
+> Transmitted packets: 4
+> Total transmitted values: 22
 
 **EDF**
 > Arrived packets: 8
- Dropped packets: 4
- Transmitted packets: 4
- Total transmitted values: 17
+> Dropped packets: 4
+> Transmitted packets: 4
+> Total transmitted values: 17
