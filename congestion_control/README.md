@@ -25,7 +25,10 @@ Each packet bundle (tuple) is contained within parentheses `()`.
 Each packet bundle is separated by a space char `' '`.
 Each time slot is separated by a new line `\n`.
 **Input_file example:**
-`(2,3,6) (3,4,1)\n(2,4,5)`
+
+    (2,3,6) (3,4,1)
+    (2,4,5)
+
 
 ## How to run the program
 
