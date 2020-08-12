@@ -1,0 +1,13 @@
+{
+  "name": "networks_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lpm": " node prefix_table.js ",
+    "lpm.opt": "node prefix_table_opt.js"
+  },
+  "author": "edwardkisller",
+  "license": "ISC"
+}
