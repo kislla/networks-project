@@ -4,7 +4,7 @@ const edf = async () => {
 
     let arrived = 0, dropped = 0, transmitted = 0, totalArrivalVal = 0
     const data = await inputPorcess()
-    const queueSize = parseInt(process.argv[2])
+    // const queueSize = parseInt(process.argv[2])
     // const data = [
     //     [
     //         { amount: 2, slack: 3, value: 6 },
@@ -12,7 +12,7 @@ const edf = async () => {
     //     ],
     //     [{ amount: 3, slack: 4, value: 5 }]
     // ]
-    // const queueSize = 4
+    const queueSize = 4
     const queue = []
     // console.log(queueSize)
     // console.log(data)
@@ -44,7 +44,10 @@ const edf = async () => {
 
         queue.forEach(packet => {// reduce the slack in all packets in  the queue by 1
             packet.slack -= 1
-            if (packet.slack <= 0) queue.pop()
+            if (packet.slack <= 0){
+                queue.pop();
+                dropped+=1;
+            } 
         })
         // console.log(queue)
         let toTransmit = queue.pop()  //pop the lowest slack from the queue and transmit it : transmitted ++ , totalArrivalVal += pop.value
@@ -76,20 +79,21 @@ const edf = async () => {
 
 
 const inputPorcess = async () => {
-     const filepath = process.argv[3]
-    // const filepath = 'smaple_input'
+    //  const filepath = process.argv[3]
+    const filepath = '/Users/edwardk/Desktop/JS/networks_project/congestion_control/general_benchmark'
     const input = await fs.readFileSync(filepath, 'UTF-8')
     const lines = input.split(/\r?\n/); // split file to array of lines
 
     const timeSlots = []
     // const timeSlot = []
 
-    lines.forEach(async line => {
+    lines.forEach( line => {
         const arrivals = line.split(' ')
         const timeSlot = []
         // console.log("arrivals: " + arrivals)
         arrivals.forEach(arrival => {
-            const packetBundel = arrival.match(/\d/g) // extract the packet data from a budnle
+            // const packetBundel = arrival.match(/\d/g) // extract the packet data from a budnle
+            const packetBundel = arrival.substring(1,arrival.length-1).split(',')
             // console.log(packetBundel)
             timeSlot.push({
                 amount: parseInt(packetBundel[0]),

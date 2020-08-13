@@ -79,31 +79,32 @@ const bd = async () => {
 
 
 const inputPorcess = async () => {
-     const filepath = process.argv[3]
-  //  const filepath = 'smaple_input'
-    const input = await fs.readFileSync(filepath, 'UTF-8')
-    const lines = input.split(/\r?\n/); // split file to array of lines
+    const filepath = process.argv[3]
+   // const filepath = '/Users/edwardk/Desktop/JS/networks_project/congestion_control/general_benchmark'
+   const input = await fs.readFileSync(filepath, 'UTF-8')
+   const lines = input.split(/\r?\n/); // split file to array of lines
 
-    const timeSlots = []
-    // const timeSlot = []
+   const timeSlots = []
+   // const timeSlot = []
 
-    lines.forEach(async line => {
-        const arrivals = line.split(' ')
-        const timeSlot = []
-        // console.log("arrivals: " + arrivals)
-        arrivals.forEach(arrival => {
-            const packetBundel = arrival.match(/\d/g) // extract the packet data from a budnle
-            // console.log(packetBundel)
-            timeSlot.push({
-                amount: parseInt(packetBundel[0]),
-                slack: parseInt(packetBundel[1]),
-                value: parseInt(packetBundel[2])
-            })
-        })
-        timeSlots.push(timeSlot)
-    })
+   lines.forEach( line => {
+       const arrivals = line.split(' ')
+       const timeSlot = []
+       // console.log("arrivals: " + arrivals)
+       arrivals.forEach(arrival => {
+           // const packetBundel = arrival.match(/\d/g) // extract the packet data from a budnle
+           const packetBundel = arrival.substring(1,arrival.length-1).split(',')
+           // console.log(packetBundel)
+           timeSlot.push({
+               amount: parseInt(packetBundel[0]),
+               slack: parseInt(packetBundel[1]),
+               value: parseInt(packetBundel[2])
+           })
+       })
+       timeSlots.push(timeSlot)
+   })
 
-    // console.log(timeSlots)
-    return timeSlots
+   // console.log(timeSlots)
+   return timeSlots
 }
 bd()
